@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit} from '@angular/core';
 import {NgForm} from '@angular/forms';
 
 import {PostsService} from '../posts.service';
@@ -18,6 +18,8 @@ export class PostCreateComponent implements OnInit {
   private postId: string;
   public post: Post;
 
+  isLoading = false;
+
   constructor(public postsService: PostsService, private route: ActivatedRoute) {
   }
 
@@ -27,7 +29,9 @@ export class PostCreateComponent implements OnInit {
       if (paramMap.has('postId')) {
         this.componentState = 'edit';
         this.postId = paramMap.get('postId');
+        this.isLoading = true;
         this.postsService.getPost(this.postId).subscribe((postData) => {
+          this.isLoading = false;
           this.post = {id: postData.post._id, title: postData.post.title, content: postData.post.content};
         });
       } else {
@@ -37,11 +41,14 @@ export class PostCreateComponent implements OnInit {
     });
   }
 
-  onAddPost(form: NgForm) {
-    if (form.invalid) {
+  onAddPost(form: NgForm, event?) {
+    if (form.invalid || form.pristine) {
+      if (event) {
+        event.preventDefault();
+      }
       return;
     }
-    console.log(this.route);
+    this.isLoading = true;
     if (this.componentState === 'create') {
       this.postsService.addPost(form.value.title, form.value.content);
     } else {

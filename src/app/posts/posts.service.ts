@@ -47,15 +47,7 @@ export class PostsService {
         post.id = responseData.postId;
         this.posts.push(post);
         this.postsUpdated.next([...this.posts]);
-      });
-  }
-
-  deletePost(id: string) {
-    this.http.delete<{ message: string }>(`http://localhost:3456/api/posts/${id}`)
-      .subscribe((response) => {
-        const updatedPosts = this.posts.filter(post => post.id !== id);
-        this.posts = updatedPosts;
-        this.postsUpdated.next([...this.posts]);
+        this.router.navigate(['/']);
       });
   }
 
@@ -68,9 +60,16 @@ export class PostsService {
         updatedPosts[oldPostIndex] = post;
         this.posts = updatedPosts;
         this.postsUpdated.next(this.posts);
-        this.router.navigate(['/']).then(() => {
-          console.log('back to homepage');
-        });
+        this.router.navigate(['/']);
+      });
+  }
+
+  deletePost(id: string) {
+    this.http.delete<{ message: string }>(`http://localhost:3456/api/posts/${id}`)
+      .subscribe((response) => {
+        const updatedPosts = this.posts.filter(post => post.id !== id);
+        this.posts = updatedPosts;
+        this.postsUpdated.next([...this.posts]);
       });
   }
 }
