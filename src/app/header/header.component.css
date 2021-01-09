@@ -1,0 +1,17 @@
+a {
+  text-decoration: none;
+  color: white;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/*Toolbar uses flexbox so this will make sure
+//spacer takes all the available remaining space between
+//the other elements*/
+.header-spacer {
+  flex: 1 1 auto;
+}
