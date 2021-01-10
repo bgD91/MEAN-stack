@@ -71,15 +71,15 @@ export class PostCreateComponent implements OnInit {
         this.postsService.getPost(this.postId).subscribe((postData) => {
           this.isLoading = false;
           this.post = {
-            id: postData.post._id,
-            title: postData.post.title,
-            content: postData.post.content,
-            image: postData.post.image,
+            id: postData._id,
+            title: postData.title,
+            content: postData.content,
+            imagePath: postData.imagePath
           };
           this.form.setValue({
             title: this.post.title,
             content: this.post.content,
-            image: this.post.image,
+            image: this.post.imagePath
           });
         });
       } else {
@@ -89,18 +89,24 @@ export class PostCreateComponent implements OnInit {
     });
   }
 
-  onAddPost(event?) {
-    if (this.form.invalid || this.form.pristine) {
-      if (event) {
-        event.preventDefault();
-      }
+  onAddPost() {
+    if (this.form.invalid) {
       return;
     }
     this.isLoading = true;
     if (this.componentState === 'create') {
-      this.postsService.addPost(this.form.value.title, this.form.value.content, this.form.value.image);
+      this.postsService.addPost(
+        this.form.value.title,
+        this.form.value.content,
+        this.form.value.image
+      );
     } else {
-      this.postsService.editPost(this.postId, this.form.value.title, this.form.value.content, this.form.value.image);
+      this.postsService.editPost(
+        this.postId,
+        this.form.value.title,
+        this.form.value.content,
+        this.form.value.image
+      );
     }
     this.form.reset();
   }

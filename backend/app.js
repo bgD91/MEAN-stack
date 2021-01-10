@@ -1,3 +1,4 @@
+const path = require("path");
 const express = require('express');
 const bodyParser = require("body-parser");
 const mongoose = require('mongoose');
@@ -8,6 +9,12 @@ const app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
+
+/* Use express.static() to grant static access to any requests
+// that are targeting /images and forward them to backend/images
+*/
+app.use("/images", express.static(path.join("backend/images")));
+
 
 mongoose.connect('mongodb+srv://bgd321:N6kl59YdmuM6sFrQ@cluster0.flgly.mongodb.net/Cluster0?retryWrites=true&w=majority', {
   useNewUrlParser: true,
