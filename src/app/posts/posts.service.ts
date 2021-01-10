@@ -27,6 +27,7 @@ export class PostsService {
             id: post._id,
             title: post.title,
             content: post.content,
+            image: post.image,
           };
         });
       }))
@@ -37,11 +38,12 @@ export class PostsService {
   }
 
   getPost(id: string) {
-    return this.http.get<{ post: { _id: string, title: string, content: string } }>(`http://localhost:3456/api/posts/${id}`);
+    return this.http.get<{ post: { _id: string, title: string, content: string, image } }>(`http://localhost:3456/api/posts/${id}`);
   }
 
-  addPost(title: string, content: string) {
-    const post: Post = {id: null, title: title, content: content};
+  addPost(title: string, content: string, image: any) {
+    const post: Post = {id: null, title: title, content: content, image: image};
+
     this.http.post<{ message: string, postId: string }>('http://localhost:3456/api/posts', post)
       .subscribe(responseData => {
         post.id = responseData.postId;
@@ -51,8 +53,8 @@ export class PostsService {
       });
   }
 
-  editPost(id: string, title: string, content: string) {
-    const post: Post = {id, title, content};
+  editPost(id: string, title: string, content: string, image: any) {
+    const post: Post = {id, title, content, image};
     return this.http.put<{ message: string }>(`http://localhost:3456/api/posts/${id}`, post)
       .subscribe((response) => {
         const updatedPosts = [...this.posts];

@@ -7,7 +7,7 @@ const postsRoutes = require("./routes/posts");
 const app = express();
 
 app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({extended: false}));
 
 mongoose.connect('mongodb+srv://bgd321:N6kl59YdmuM6sFrQ@cluster0.flgly.mongodb.net/Cluster0?retryWrites=true&w=majority', {
   useNewUrlParser: true,
