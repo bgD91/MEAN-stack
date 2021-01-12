@@ -17,7 +17,7 @@ export class PostCreateComponent implements OnInit {
 
   private componentState = 'create';
   private postId: string;
-  public post: Post;
+  post: Post;
 
   isLoading = false;
 
@@ -89,7 +89,7 @@ export class PostCreateComponent implements OnInit {
     });
   }
 
-  onAddPost() {
+  onFormSubmit() {
     if (this.form.invalid) {
       return;
     }

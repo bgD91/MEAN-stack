@@ -2,11 +2,11 @@
 
   <mat-spinner *ngIf="isLoading"></mat-spinner>
 
-  <form [formGroup]="form" *ngIf="!isLoading" (submit)="onAddPost(form)">
+  <form (submit)="onFormSubmit()" *ngIf="!isLoading" [formGroup]="form">
     <mat-form-field>
       <input
-        matInput
         formControlName="title"
+        matInput
         placeholder="Post Title"
         required
         type="text">
@@ -14,20 +14,25 @@
     </mat-form-field>
 
     <div>
-      <button mat-stroked-button type="button" (click)="filePicker.click()">Pick Image</button>
-      <input type="file" (change)="onImagePicked($event)"#filePicker>
+      <button (click)="filePicker.click()" mat-stroked-button type="button">Pick Image</button>
+      <input #filePicker (change)="onImagePicked($event)" type="file">
     </div>
 
-    <div class="image-preview" *ngIf="imagePreview !== '' && imagePreview && form.get('image').valid">
-      <img [src]="imagePreview" [alt]="form.value.title">
+    <div *ngIf="imagePreview !== '' && imagePreview && form.get('image').valid" class="image-preview">
+      <img [alt]="form.value.title" [src]="imagePreview">
     </div>
+
+    <!--    TODO: PROCESSING FOR CASE WHEN imagePreview comes as ArrayBuffer-->
+    <!--    <div class="image-preview" *ngIf="">-->
+    <!--      <img [src]="imagePreview" [alt]="form.value.title">-->
+    <!--    </div>-->
 
     <mat-form-field>
       <textarea
-        (keydown.enter)="onAddPost()"
+        (keydown.enter)="onFormSubmit()"
+        formControlName="content"
         matInput
         maxlength="150"
-        formControlName="content"
         placeholder="Post Content"
         required
         rows="4"
