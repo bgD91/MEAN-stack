@@ -20,6 +20,9 @@ export class RegisterComponent implements OnInit {
     if (registerForm.invalid) {
       return;
     }
+
+    this.isLoading = true;
+
     this.authService.createUser(
       registerForm.value.email,
       registerForm.value.password

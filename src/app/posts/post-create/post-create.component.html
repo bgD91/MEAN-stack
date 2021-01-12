@@ -13,14 +13,19 @@
       <mat-error *ngIf="form.get('title').invalid">Please enter a post title.</mat-error>
     </mat-form-field>
 
-    <div>
-      <button (click)="filePicker.click()" mat-stroked-button type="button">Pick Image</button>
-      <input #filePicker (change)="onImagePicked($event)" type="file">
+    <div *ngIf="componentState === 'edit'" class="image-preview">
+      <img [src]="post.imagePath">
     </div>
 
     <div *ngIf="imagePreview !== '' && imagePreview && form.get('image').valid" class="image-preview">
       <img [alt]="form.value.title" [src]="imagePreview">
     </div>
+
+    <div style="margin: 10px 0 10px 0">
+      <button (click)="filePicker.click()" mat-stroked-button type="button">Pick Image</button>
+      <input #filePicker (change)="onImagePicked($event)" type="file">
+    </div>
+
 
     <!--    TODO: PROCESSING FOR CASE WHEN imagePreview comes as ArrayBuffer-->
     <!--    <div class="image-preview" *ngIf="">-->
