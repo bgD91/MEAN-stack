@@ -1,6 +1,6 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken")
+const jwt = require("jsonwebtoken");
 const User = require('../models/user');
 
 
@@ -51,7 +51,7 @@ router.post(
         if (!result) {
           return res.status(401), json({
             message: 'Invalid password'
-          })
+          });
         }
         const token = jwt.sign({
             email: fetchedUser.email,
@@ -60,8 +60,9 @@ router.post(
           'very_long_secret_for_development12312',
           {expiresIn: '1h'});
         res.status(200).json({
-          token: token
-        })
+          token: token,
+          expiresIn: 3600
+        });
       })
       .catch(authError => {
         return res.status(401).json({

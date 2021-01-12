@@ -22,8 +22,8 @@
     </div>
 
     <div style="margin: 10px 0 10px 0">
-      <button (click)="filePicker.click()" mat-stroked-button type="button">Pick Image</button>
       <input #filePicker (change)="onImagePicked($event)" type="file">
+      <button id="image-picker-button" (click)="filePicker.click()" mat-stroked-button type="button">Pick Image</button>
     </div>
 
 

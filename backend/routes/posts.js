@@ -98,7 +98,7 @@ router.get("", (req, res, next) => {
   if (pageSize && currentPage) {
     postQuery
       .skip(pageSize * (currentPage - 1))
-      .limit(pageSize);
+      .limit(pageSize)
   }
 
   postQuery
