@@ -24,7 +24,7 @@ router.post(
           })
           .catch(err => {
             res.status(500).json({
-              error: err
+              message: "Invalid authentication credentials!"
             });
           })
       });
@@ -67,7 +67,7 @@ router.post(
       })
       .catch(authError => {
         return res.status(401).json({
-          message: 'Auth failed',
+          message: 'Invalid authentication credentials!',
           error: authError
         })
       })
