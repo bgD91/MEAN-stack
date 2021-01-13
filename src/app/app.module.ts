@@ -16,22 +16,21 @@ import {AngularMaterialModule} from './angular-material.module';
 import {PostsModule} from './posts/posts.module';
 
 import {AppRoutingModule} from './app-routing.module';
-import {AuthModule} from './auth/auth.module';
+import {CommonModule} from '@angular/common';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    ErrorComponent
+    ErrorComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    PostsModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    AngularMaterialModule,
-    PostsModule,
-    AuthModule
+    AngularMaterialModule
   ],
   providers: [
     {

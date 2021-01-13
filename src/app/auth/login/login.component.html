@@ -10,7 +10,7 @@
         matInput
         name="email"
         ngModel
-        placeholder="Your E-Mail address"
+        placeholder="Type your email here"
         required
         type="email">
       <mat-error *ngIf="emailInput.invalid">Please enter a valid email.</mat-error>
@@ -23,6 +23,7 @@
         name="password"
         ngModel
         placeholder="Password"
+        required
         type="password">
       <mat-error *ngIf="passwordInput.invalid">Please enter a valid password.</mat-error>
 
