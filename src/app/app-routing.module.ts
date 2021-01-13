@@ -3,7 +3,7 @@ import {PostListComponent} from './posts/post-list/post-list.component';
 import {RouterModule, Routes} from '@angular/router';
 import {PostCreateComponent} from './posts/post-create/post-create.component';
 import {LoginComponent} from './auth/login/login.component';
-import {RegisterComponent} from './auth/signup/register.component';
+import {RegisterComponent} from './auth/register/register.component';
 import {AuthGuard} from './auth/auth.guard';
 
 

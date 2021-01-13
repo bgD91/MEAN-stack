@@ -1,6 +1,5 @@
 import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import construct = Reflect.construct;
 import {Injectable} from '@angular/core';
 import {AuthService} from './auth.service';
 
