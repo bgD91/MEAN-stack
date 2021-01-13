@@ -36,11 +36,9 @@ exports.loginUser = (req, res, next) => {
         });
       }
       fetchedUser = user;
-      console.log(fetchedUser);
       return bcrypt.compare(req.body.password, user.password);
     })
     .then(result => {
-      console.log(result);
       if (!result) {
         return res.status(401), json({
           message: 'Invalid password'
@@ -50,7 +48,7 @@ exports.loginUser = (req, res, next) => {
           email: fetchedUser.email,
           userId: fetchedUser._id
         },
-        'very_long_secret_for_development12312',
+        process.env.JWT_KEY,
         {expiresIn: '1h'});
       res.status(200).json({
         token: token,

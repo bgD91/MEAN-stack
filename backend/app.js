@@ -17,10 +17,13 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use("/images", express.static(path.join("backend/images")));
 
 
-mongoose.connect('mongodb+srv://bgd321:N6kl59YdmuM6sFrQ@cluster0.flgly.mongodb.net/Cluster0?retryWrites=true&w=majority', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-})
+mongoose.connect(
+  "mongodb+srv://bgd321:" +
+  process.env.MONGO_ATLAS_PASSWORD +
+  "@cluster0.flgly.mongodb.net/Cluster0?retryWrites=true&w=majority", {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  })
   .then(() => {
     console.log('connected to db');
   })
