@@ -17,7 +17,6 @@ export class PostsService {
   private postsUpdated = new Subject<{ posts: Post[], postCount: number }>();
 
 
-
   constructor(private http: HttpClient, private router: Router) {
   }
 
@@ -70,15 +69,8 @@ export class PostsService {
     postData.append('title', title);
     postData.append('content', content);
     postData.append('image', image, title);
-    this.http.post<{
-      message: string,
-      post: Post
-    }>(
-      BACKEND_URL,
-      postData
-    )
+    this.http.post<{ message: string, post: Post }>(BACKEND_URL, postData)
       .subscribe(responseData => {
-
         this.router.navigate(['/']);
       });
   }
@@ -100,10 +92,7 @@ export class PostsService {
         creator: null
       };
     }
-    return this.http.put<{
-      post: Post
-    }>(BACKEND_URL + `/${id}`,
-      postData)
+    return this.http.put<{ post: Post }>(BACKEND_URL + `/${id}`, postData)
       .subscribe((response) => {
         this.router.navigate(['/']);
       });

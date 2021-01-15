@@ -14,7 +14,7 @@ const storage = multer.diskStorage({
       error = null;
     }
     // throw error or save to path ./images
-    callback(error, "./images");
+    callback(error, "images");
   },
   filename: (req, file, cb) => {
     const name = file.originalname
