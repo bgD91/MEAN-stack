@@ -1,3 +1,43 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
-body { margin: 0; }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    color: #444;
+    font-family: 'Roboto', sans-serif;
+    box-sizing: border-box;
+    /*background: linear-gradient(to bottom right, #6f1636, #000000);*/
+    height: 100vh;
+}
+
+.app-main-container {
+    padding: 0 100px 0 100px;
+}
+
+
+.auth-container.mat-card {
+    /*background-color: rgba(0, 0, 0, 0.8);*/
+    /*opacity: 0.8;*/
+    width: 30vw;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
+}
+
+.post-container.mat-card {
+    /*background-color: rgba(0, 0, 0, 0.8);*/
+    /*opacity: 0.8;*/
+    width: 800px;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
+}

@@ -12,13 +12,18 @@ mat-spinner {
 }
 
 .post-image {
-  width: 50vw;
+  width: 100%;
 }
 .post-image img {
-  width: 50vw;
+  width: 100%;
   box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.6);
 }
 
 mat-paginator {
   margin-top: 1rem;
+}
+
+.post-container {
+  margin: 100px;
+  padding: 100px;
 }
